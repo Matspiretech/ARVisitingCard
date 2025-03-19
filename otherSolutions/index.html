@@ -1,0 +1,213 @@
+<!-- 1. As soon as the image is tracked and the model is shown the browser opens the dialer -->
+<!-- <script
+  src="https://cdn.jsdelivr.net/gh/aframevr/aframe@1c2407b26c61958baa93967b5412487cd94b290b/dist/aframe-master.min.js"></script>
+<script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
+
+<style>
+  .dialer-button {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+</style>
+
+<body style="margin: 0px; overflow: hidden;">
+  <a-scene vr-mode-ui="enabled: false;" renderer="logarithmicDepthBuffer: true;" embedded
+    arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;">
+    <a-nft id="ar-marker" type="nft" url="./nft/imagemarker" smooth="true" smoothCount="10" smoothTolerance=".01"
+      smoothThreshold="5">
+      <a-entity gltf-model="./arcard.glb" scale="20 20 20"
+        position="50 0 -100" rotation="-90 0 0">
+      </a-entity>
+    </a-nft>
+    <a-entity camera></a-entity>
+  </a-scene>
+
+  <script>
+    const phoneNumber = "+1234567890";
+    document.querySelector("#ar-marker").addEventListener("markerFound", () => {
+      window.location.href = `tel:${phoneNumber}`;
+    });
+
+  </script>
+</body> -->
+
+<!-- ~~~~~~~~~~~~~~~~1 end~~~~~~~~~~~~~~~~~~~~ -->
+
+
+
+
+<!-- 2.The user can click on the model where the number is written and it will redirect the user to the dial pad.
+(This solution is not working because A-Frame models do not receive click events by default) -->
+
+
+<!-- ~~~~~~~~~~~~~~~~2 end~~~~~~~~~~~~~~~~~~~~ -->
+
+
+
+
+<!-- 3. We can make a clickable button that will be visible at the bottom of the page after the image is scanned and the model is shown. -->
+<!-- <script
+  src="https://cdn.jsdelivr.net/gh/aframevr/aframe@1c2407b26c61958baa93967b5412487cd94b290b/dist/aframe-master.min.js"></script>
+<script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
+
+<style>
+  .dialer-button {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .error-message {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: red;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    display: none;
+  }
+</style>
+
+<body style="margin: 0px; overflow: hidden;">
+  <div class="error-message" id="error-message">Error: Model failed to load!</div>
+
+  <a-scene vr-mode-ui="enabled: false;" renderer="logarithmicDepthBuffer: true;" embedded
+    arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;">
+    <a-nft class="ar-marker" type="nft" url="./nft/imagemarker" smooth="true" smoothCount="10" smoothTolerance=".01"
+      smoothThreshold="5">
+      <a-entity gltf-model="./arcard.glb" scale="20 20 20" position="50 0 -100" rotation="-90 0 0">
+      </a-entity>
+    </a-nft>
+    <a-nft class="ar-marker" type="nft" url="./nftsecond/imagemarkersecond" smooth="true" smoothCount="10"
+      smoothTolerance=".01" smoothThreshold="5">
+      <a-entity gltf-model="./ufo.glb" scale="20 20 20" position="50 0 -100" rotation="-90 0 0">
+      </a-entity>
+    </a-nft>
+    <a-nft class="ar-marker" type="nft" url="./nftthree/imagemarkerthree" smooth="true" smoothCount="10"
+      smoothTolerance=".01" smoothThreshold="5">
+    </a-nft>
+    <a-entity camera></a-entity>
+  </a-scene>
+
+  <button class="dialer-button" onclick="openDialPad()" style="display: none;">Call Now</button>
+
+  <script>
+    const phoneNumber = "+1234567890"; // Change this to your number
+    const errorMessage = document.getElementById("error-message");
+
+    document.querySelector(".ar-marker").addEventListener("markerFound", () => {
+      document.querySelector(".dialer-button").style.display = "block";
+    });
+
+    document.querySelectorAll(".ar-marker").forEach(marker => {
+      marker.addEventListener("markerFound", () => {
+        document.querySelector(".dialer-button").style.display = "block";
+      });
+    });
+
+    document.querySelector(".ar-marker").addEventListener("markerFound", () => {
+      document.querySelector(".dialer-button").style.display = "block";
+    });
+
+    function openDialPad() {
+      window.location.href = `tel:${phoneNumber}`;
+    }
+  </script>
+</body> -->
+
+<!-- ~~~~~~~~~~~~~~~~3 end~~~~~~~~~~~~~~~~~~~~ -->
+
+
+
+
+<!-- 4. Add a raycaster in the scene in which a circle will appear in the center of the screen which we have to point to the model and than a. click on the circle to perform the functionality or else b. can be automated, i.e., automatically opening the dialer when the user focuses on the number for 1-2sec. -->
+<!-- a. -->
+<!-- <script
+  src="https://cdn.jsdelivr.net/gh/aframevr/aframe@1c2407b26c61958baa93967b5412487cd94b290b/dist/aframe-master.min.js"></script>
+<script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
+
+<body style="margin: 0px; overflow: hidden;">
+  <a-scene vr-mode-ui="enabled: false;" renderer="logarithmicDepthBuffer: true;" embedded
+    arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;">
+
+    <a-nft id="ar-marker" type="nft" url="./nft/imagemarker" smooth="true" smoothCount="15" smoothTolerance=".01"
+      smoothThreshold="5">
+      <a-entity id="clickable-model" class="clickable"
+        gltf-model="./arcard.glb" scale="20 20 20"
+        position="0 0 -100" rotation="-90 0 0">
+      </a-entity>
+    </a-nft>
+
+    <a-entity camera>
+      <a-cursor fuse="false" raycaster="objects: .clickable"></a-cursor>
+    </a-entity>
+  </a-scene>
+
+  <script>
+    const phoneNumber = "+1111111111";
+
+    document.querySelector("#clickable-model").addEventListener("click", () => {
+      window.location.href = `tel:${phoneNumber}`;
+    });
+  </script>
+</body> -->
+
+<!-- b. -->
+<!-- <script
+  src="https://cdn.jsdelivr.net/gh/aframevr/aframe@1c2407b26c61958baa93967b5412487cd94b290b/dist/aframe-master.min.js"></script>
+<script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
+
+<body style="margin: 0px; overflow: hidden;">
+  <a-scene vr-mode-ui="enabled: false;" renderer="logarithmicDepthBuffer: true;" embedded
+    arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;">
+
+    <a-nft id="ar-marker" type="nft" url="./nft/imagemarker" smooth="true" smoothCount="15" smoothTolerance=".01"
+      smoothThreshold="5">
+
+      <a-entity id="clickable-model" class="clickable"
+        gltf-model="./arcard.glb" scale="20 20 20"
+        position="0 0 -100" rotation="-90 0 0">
+      </a-entity>
+      <a-entity id="clickable2-model" class="clickable"
+        gltf-model="./arcard.glb" scale="20 20 20"
+        position="100 0 -100" rotation="-90 0 0">
+      </a-entity>
+
+    </a-nft>
+
+    <a-entity camera>
+      <a-cursor fuse="true" fuseTimeout="1000" raycaster="objects: .clickable"></a-cursor>
+    </a-entity>
+  </a-scene>
+
+  <script>
+    const phoneNumber = "+1111111111";
+    const phoneNumber2 = "+9999999999";
+
+    document.querySelector("#clickable-model").addEventListener("click", () => {
+      window.location.href = `tel:${phoneNumber}`;
+    });
+    document.querySelector("#clickable2-model").addEventListener("click", () => {
+      window.location.href = `tel:${phoneNumber2}`;
+    });
+  </script>
+</body> -->
